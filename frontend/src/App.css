@@ -1,0 +1,49 @@
+* {
+  box-sizing: border-box;
+}
+
+.App{
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar{
+  width: 25%;
+  padding: 20px;
+  background-color: #0b0b5a;
+  color: white;
+  height: 100%;
+  overflow: hidden;
+}
+.sidebar-header{
+  text-align: center;
+}
+
+.sidebar-list-wrapper{
+  list-style: none;
+  padding-left: 0px;
+  
+  li{
+    padding:10px;
+    cursor: pointer;
+  }
+}
+
+.file-icon{
+  height: 60px;
+  width: 60px;
+}
+
+.sidebar-element-list{
+  color: white;
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  text-transform: capitalize;
+}
+
+.active{
+  background-color: blueviolet;
+}
