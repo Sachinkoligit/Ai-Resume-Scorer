@@ -1,6 +1,7 @@
 .dashboard-container {
   width: 100%;
   padding: 30px;
+  overflow-y: auto;
 }
 
 .dashboard-wrapper, .upload-wrapper, .analyze-wrapper {
@@ -27,6 +28,21 @@
   padding: 20px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  h3, h4, h2, h5, p{
+    margin: 0px;
+  }
+  h4{
+    font-size: 26px;
+    align-self: flex-start;
+  }
+  h5{
+    font-size: medium;
+    align-self: flex-start;
+  }
 }
 
 .heading {
@@ -98,4 +114,20 @@
         padding: 10px;
         outline: none;
     }
+}
+
+.right-container{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.profile-image-container{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  .profile{
+    height: 100%;
+    width: 100%;
+  }
 }
