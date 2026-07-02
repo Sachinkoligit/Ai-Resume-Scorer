@@ -4,6 +4,7 @@ import { MdOutlineIntegrationInstructions } from "react-icons/md";
 import { FaRegFileAlt, FaUser } from "react-icons/fa";
 import { VscFilePdf } from "react-icons/vsc";
 import { GiProgression } from "react-icons/gi";
+import Result from "../ui/Result";
 
 export default function Dashboard() {
   const [imageError, setImageError] = useState(false);
@@ -51,29 +52,30 @@ export default function Dashboard() {
         </div>
 
         <div className="right-container">
-        <div className="profile-container">
-          <h3>Analyze with AI</h3>
-          <div className="profile-image-container">
-            {!imageError ? (
-              <img
-                alt="profile"
-                src="xyz.png"
-                onError={() => setImageError(true)}
-                className="profile"
-              />
-            ) : (
-              <FaUser className="profile"/>
-            )}
+          <div className="profile-container">
+            <h3>Analyze with AI</h3>
+            <div className="profile-image-container">
+              {!imageError ? (
+                <img
+                  alt="profile"
+                  src="xyz.png"
+                  onError={() => setImageError(true)}
+                  className="profile"
+                />
+              ) : (
+                <FaUser className="profile" />
+              )}
+            </div>
+            <h4>Sachin koli</h4>
           </div>
-          <h4>Sachin koli</h4>
-        </div>
 
-        <div className="profile-container">
+          {/* <div className="profile-container">
           <h3>Result</h3>
           <h2>75% {" "} <GiProgression color="orange"/></h2> 
           <h5>Feedback</h5>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste architecto quo aperiam ad porro recusandae, enim veniam debitis, perferendis omnis velit dolores consequuntur temporibus maxime deserunt, reiciendis ullam nihil dicta laboriosam sint. Maxime explicabo quis nisi eaque, aperiam velit magnam perferendis asperiores iste beatae reiciendis quaerat corrupti autem, necessitatibus molestias? eaque, aperiam velit magnam perferendis asperiores iste beatae reiciendis quaerat corrupti autem, necessitatibus molestias?</p>
-        </div>
+        </div> */}
+          <Result />
         </div>
       </div>
     </div>

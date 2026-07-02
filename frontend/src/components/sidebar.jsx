@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaRegFileAlt } from "react-icons/fa";
 import { MdDashboard } from "react-icons/md";
 import { FaHistory } from "react-icons/fa";
@@ -14,6 +14,32 @@ export default function Sidebar() {
     { name: "admin", icon: <RiAdminLine />, redirect: "/admin" },
     { name: "logout", icon: <MdOutlineLogout /> },
   ];
+  const pathName = window.location.pathname;
+
+  useEffect(() => {
+    switch (true) {
+      case pathName.includes("history"):
+        setSelectedItem("history");
+        break;
+      case pathName.includes("admin"):
+        setSelectedItem("admin");
+        break;
+      default:
+        setSelectedItem("dashboard");
+        break;
+    }
+    console.log(selectedItem)
+  }, [pathName]);
+  // switch (pathName) {
+  //   case pathName.includes("history"):
+  //     setSelectedItem("history");
+  //     break;
+  //   case pathName.includes("admin"):
+  //     setSelectedItem("admin");
+  //     break;
+  //   default:
+  //     break;
+  // }
   return (
     <div className="sidebar">
       <div className="sidebar-header">
