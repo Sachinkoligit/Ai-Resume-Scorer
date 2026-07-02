@@ -5,7 +5,6 @@ import { GiProgression } from "react-icons/gi";
 export default function Result() {
   const pathname = window.location.pathname;
   const isHistoryPage = pathname.includes("history");
-  console.log(isHistoryPage);
   return (
     <div className="profile-container">
       {!isHistoryPage && <h3>Result</h3>}

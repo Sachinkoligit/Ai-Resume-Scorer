@@ -1,7 +1,7 @@
 import React from 'react';
 import './History.css';
 import Result from '../ui/Result';
-import "../Dashboard/Dashboard.css";
+// import "../Dashboard/Dashboard.css";
 import { GiProgression } from "react-icons/gi";
 
 export default function History() {
