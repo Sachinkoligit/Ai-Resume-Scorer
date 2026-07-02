@@ -1,0 +1,12 @@
+.history-container{
+    height: 100vh;
+    width: 100%;
+    overflow-y: auto;
+    padding: 30px;
+}
+
+.history-wrapper{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+}
