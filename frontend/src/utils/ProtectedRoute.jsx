@@ -1,0 +1,9 @@
+import React from 'react'
+import { Navigate, Outlet } from 'react-router-dom';
+import Login from '../components/login/login';
+
+export default function ProtectedRoute() {
+    const isAuthenticated = localStorage.getItem("accessToken");
+    console.log("isAuthenticated")
+    return isAuthenticated ? <Outlet/> : <Navigate to="/signin"/>
+}

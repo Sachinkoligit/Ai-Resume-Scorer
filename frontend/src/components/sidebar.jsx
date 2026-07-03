@@ -9,7 +9,7 @@ import { Link, redirect } from "react-router-dom";
 export default function Sidebar() {
   const [selectedItem, setSelectedItem] = useState("dashboard");
   const sidebarElements = [
-    { name: "dashboard", icon: <MdDashboard />, redirect: "/" },
+    { name: "dashboard", icon: <MdDashboard />, redirect: "/dashboard" },
     { name: "history", icon: <FaHistory />, redirect: "/history" },
     { name: "admin", icon: <RiAdminLine />, redirect: "/admin" },
     { name: "signin", icon: <MdOutlineLogout />, redirect:"/signin" },
@@ -26,6 +26,9 @@ export default function Sidebar() {
         break;
       case pathName.includes("signin"):
         setSelectedItem("signin");
+        break;
+        case pathName.includes("dashboard"):
+        setSelectedItem("dashboard");
         break;
       default:
         setSelectedItem("dashboard");
