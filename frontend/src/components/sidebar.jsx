@@ -4,15 +4,15 @@ import { MdDashboard } from "react-icons/md";
 import { FaHistory } from "react-icons/fa";
 import { RiAdminLine } from "react-icons/ri";
 import { MdOutlineLogout } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
 
 export default function Sidebar() {
   const [selectedItem, setSelectedItem] = useState("dashboard");
   const sidebarElements = [
-    { name: "dashboard", icon: <MdDashboard />, redirect: "/" },
+    { name: "dashboard", icon: <MdDashboard />, redirect: "/dashboard" },
     { name: "history", icon: <FaHistory />, redirect: "/history" },
     { name: "admin", icon: <RiAdminLine />, redirect: "/admin" },
-    { name: "logout", icon: <MdOutlineLogout /> },
+    { name: "signin", icon: <MdOutlineLogout />, redirect:"/signin" },
   ];
   const pathName = window.location.pathname;
 
@@ -24,22 +24,19 @@ export default function Sidebar() {
       case pathName.includes("admin"):
         setSelectedItem("admin");
         break;
+      case pathName.includes("signin"):
+        setSelectedItem("signin");
+        break;
+        case pathName.includes("dashboard"):
+        setSelectedItem("dashboard");
+        break;
       default:
         setSelectedItem("dashboard");
         break;
     }
-    console.log(selectedItem)
+    console.log(selectedItem);
   }, [pathName]);
-  // switch (pathName) {
-  //   case pathName.includes("history"):
-  //     setSelectedItem("history");
-  //     break;
-  //   case pathName.includes("admin"):
-  //     setSelectedItem("admin");
-  //     break;
-  //   default:
-  //     break;
-  // }
+  
   return (
     <div className="sidebar">
       <div className="sidebar-header">
