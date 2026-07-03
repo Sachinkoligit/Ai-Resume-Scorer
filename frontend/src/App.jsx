@@ -8,6 +8,7 @@ import { Route, Routes } from 'react-router-dom'
 import Dashboard from "./components/Dashboard/Dashboard"
 import History from "./components/History/History"
 import Admin from "./components/Admin/Admin"
+import Login from './components/login/login'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -19,6 +20,7 @@ function App() {
         <Route path='/' element={<Dashboard/>}/>
         <Route path='/history' element={<History/>}/>
         <Route path='/admin' element={<Admin/>}/>
+        <Route path='/signin' element={<Login/>} />
       </Routes>
     </div>
   )

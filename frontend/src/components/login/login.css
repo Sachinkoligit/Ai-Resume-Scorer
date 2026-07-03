@@ -1,0 +1,25 @@
+.login-container{
+    overflow-y: auto;
+    height: 100vh;
+    padding: 30px;
+    width: 100%;
+
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.login-wrapper{
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-card{
+    padding: 10px;
+    background-color: black;
+    border-radius: 10px;
+    width: 30%;
+    color: white;
+}
