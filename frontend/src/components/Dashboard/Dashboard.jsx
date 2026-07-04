@@ -75,7 +75,8 @@ export default function Dashboard() {
           <h5>Feedback</h5>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste architecto quo aperiam ad porro recusandae, enim veniam debitis, perferendis omnis velit dolores consequuntur temporibus maxime deserunt, reiciendis ullam nihil dicta laboriosam sint. Maxime explicabo quis nisi eaque, aperiam velit magnam perferendis asperiores iste beatae reiciendis quaerat corrupti autem, necessitatibus molestias? eaque, aperiam velit magnam perferendis asperiores iste beatae reiciendis quaerat corrupti autem, necessitatibus molestias?</p>
         </div> */}
-          <Result />
+        <div className="result-section">
+          <Result /></div>
         </div>
       </div>
     </div>

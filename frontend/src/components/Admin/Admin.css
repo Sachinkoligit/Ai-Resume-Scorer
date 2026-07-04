@@ -15,6 +15,18 @@
   gap: 10px;
 }
 
+@media (max-width:968px){
+    .admin-wrapper{
+    grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width:468px){
+    .admin-wrapper{
+    grid-template-columns: 1fr ;
+    }
+}
+
 .admin-result-container {
   background-color: rgb(253, 254, 255);
   border-radius: 20px;
