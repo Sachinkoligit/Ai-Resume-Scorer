@@ -16,6 +16,12 @@
     align-items: center;
 }
 
+@media (max-width: 968px){
+    .login-wrapper{
+        justify-content: center;
+    }
+}
+
 .login-card{
     padding: 20px;
     background-color: black;
@@ -28,6 +34,18 @@
     h1{
         margin: 0px;
         font-size: large;
+    }
+}
+
+@media(max-width: 963px){
+    .login-card{
+        width: 50%;
+    }
+}
+
+@media(max-width: 463px){
+    .login-card{
+        width: 100%;
     }
 }
 

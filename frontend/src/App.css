@@ -48,3 +48,9 @@
 .active{
   background-color: blueviolet;
 }
+
+@media (max-width: 968px){
+  .sidebar{
+    display:none;
+  }
+}
