@@ -1,5 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { GoogleAuthProvider } from "firebase/auth";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -11,9 +14,13 @@ const firebaseConfig = {
   projectId: "mernai-c4af2",
   storageBucket: "mernai-c4af2.firebasestorage.app",
   messagingSenderId: "609953863897",
-  appId: "1:609953863897:web:7f2724a46a2da8afd546c8",
-  measurementId: "G-JREZZ4VV1Z"
+  appId: "1:609953863897:web:a8c710ab2da0eb57d546c8",
+  measurementId: "G-6RNYL35548"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const auth = getAuth(app)
+const provider = new GoogleAuthProvider();
+
+export { auth, provider };
