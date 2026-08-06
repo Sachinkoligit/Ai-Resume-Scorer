@@ -17,15 +17,17 @@ function App() {
   return (
     <div className="App">
       <Sidebar />
-      <Routes>
-        <Route path="/signin" element={<Login />} />
-        <Route element={<ProtectedRoute />}>
-          <Route index element={<Dashboard />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/history" element={<History />} />
-          <Route path="/admin" element={<Admin />} />
-        </Route>
-      </Routes>
+      <div className="main-content">
+        <Routes>
+          <Route path="/signin" element={<Login />} />
+          <Route element={<ProtectedRoute />}>
+            <Route index element={<Dashboard />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/history" element={<History />} />
+            <Route path="/admin" element={<Admin />} />
+          </Route>
+        </Routes>
+      </div>
     </div>
   );
 }

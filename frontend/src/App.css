@@ -5,7 +5,12 @@
 .App{
   display: flex;
   height: 100vh;
-  overflow: hidden;
+  overflow: auto;
+}
+
+.main-content{
+  flex: 1 1 auto;
+  overflow-y: auto;
 }
 
 .sidebar{
@@ -14,7 +19,7 @@
   background-color: #0b0b5a;
   color: white;
   height: 100%;
-  overflow: hidden;
+  overflow: auto;
 }
 .sidebar-header{
   text-align: center;
@@ -23,11 +28,11 @@
 .sidebar-list-wrapper{
   list-style: none;
   padding-left: 0px;
-  
-  li{
-    padding:10px;
-    cursor: pointer;
-  }
+}
+
+.sidebar-list-wrapper li{
+  padding: 10px;
+  cursor: pointer;
 }
 
 .file-icon{
