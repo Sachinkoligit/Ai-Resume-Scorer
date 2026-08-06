@@ -27,7 +27,7 @@ export default function Sidebar() {
       case pathName.includes("signin"):
         setSelectedItem("signin");
         break;
-        case pathName.includes("dashboard"):
+      case pathName.includes("dashboard"):
         setSelectedItem("dashboard");
         break;
       default:

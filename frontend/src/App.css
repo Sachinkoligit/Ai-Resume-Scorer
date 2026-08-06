@@ -14,7 +14,10 @@
 }
 
 .sidebar{
-  width: 25%;
+  /* keep a stable sidebar width so it doesn't collapse */
+  flex: 0 0 240px;
+  width: 240px;
+  min-width: 200px;
   padding: 20px;
   background-color: #0b0b5a;
   color: white;
