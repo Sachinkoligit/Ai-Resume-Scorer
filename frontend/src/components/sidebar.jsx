@@ -4,9 +4,10 @@ import { MdDashboard } from "react-icons/md";
 import { FaHistory } from "react-icons/fa";
 import { RiAdminLine } from "react-icons/ri";
 import { MdOutlineLogout } from "react-icons/md";
-import { Link, redirect } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Sidebar() {
+  const location = useLocation();
   const [selectedItem, setSelectedItem] = useState("dashboard");
   const sidebarElements = [
     { name: "dashboard", icon: <MdDashboard />, redirect: "/dashboard" },
@@ -14,7 +15,7 @@ export default function Sidebar() {
     { name: "admin", icon: <RiAdminLine />, redirect: "/admin" },
     { name: "signin", icon: <MdOutlineLogout />, redirect:"/signin" },
   ];
-  const pathName = window.location.pathname;
+  const pathName = location.pathname;
 
   useEffect(() => {
     switch (true) {
@@ -27,16 +28,15 @@ export default function Sidebar() {
       case pathName.includes("signin"):
         setSelectedItem("signin");
         break;
-        case pathName.includes("dashboard"):
+      case pathName.includes("dashboard"):
         setSelectedItem("dashboard");
         break;
       default:
         setSelectedItem("dashboard");
         break;
     }
-    console.log(selectedItem);
   }, [pathName]);
-  
+
   return (
     <div className="sidebar">
       <div className="sidebar-header">
@@ -57,5 +57,5 @@ export default function Sidebar() {
         ))}
       </ul>
     </div>
-  );
+  )
 }
