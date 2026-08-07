@@ -1,0 +1,27 @@
+import { create } from "zustand";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+// import { auth, provider } from "../../utils/firebase";
+import { signInWithPopup } from "firebase/auth";
+import { auth, provider } from "../utils/firebase";
+// const navigate = useNavigate();
+export const useAuthStore = create((set) => ({
+  authUser: null,
+  login: async () => {
+    console.log("login...")
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const { accessToken, displayName, email, photoURL } = result.user;
+      localStorage.setItem("accessToken", accessToken);
+      set({ authUser: result.user });
+    //   navigate("/dashboard");
+    } catch (error) {
+      toast.error(error.message || "Something went wrong");
+    }
+  },
+  logout: () => {
+    console.log("logout...")
+    set({ authUser: null });
+    localStorage.clear();
+  },
+}));
