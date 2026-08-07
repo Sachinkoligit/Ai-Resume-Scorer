@@ -9,17 +9,6 @@ import { useAuthStore } from "../../store/authStore";
 
 export default function Login() {
   const {authUser, login, logout} = useAuthStore();
-  // const navigate = useNavigate()
-  // const handleLogin = async () => {
-  //   try {
-  //     const result = await signInWithPopup(auth, provider);
-  //     const { accessToken, displayName, email, photoURL } = result.user;
-  //     localStorage.setItem("accessToken",accessToken);
-  //     navigate("/dashboard");
-  //   } catch (error) {
-  //     toast.error(error.message || "Something went wrong");
-  //   }
-  // };
   return (
     <div className="login-container">
       <div className="login-wrapper">
