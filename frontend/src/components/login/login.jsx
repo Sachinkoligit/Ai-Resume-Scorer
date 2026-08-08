@@ -8,13 +8,21 @@ import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../store/authStore";
 
 export default function Login() {
-  const {authUser, login, logout} = useAuthStore();
+  const navigate = useNavigate();
+  const { authUser, login, logout } = useAuthStore();
+  console.log("auth user", authUser)
+  const handleLogin = async () => {
+    const success = await login();
+    if (success) {
+      navigate("/dashboard");
+    }
+  };
   return (
     <div className="login-container">
       <div className="login-wrapper">
         <div className="login-card">
           <h1>Login</h1>
-          <button onClick={authUser ? logout : login}>
+          <button onClick={authUser ? logout : handleLogin}>
             <FaGoogle /> {authUser ? "Logout" : "Continue with Google"}
           </button>
         </div>
