@@ -10,11 +10,14 @@ import History from "./components/History/History";
 import Admin from "./components/Admin/Admin";
 import Login from "./components/login/login";
 import ProtectedRoute from "./utils/ProtectedRoute";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
+    <>
+    <Toaster />
     <div className="App">
       <Sidebar />
       <div className="main-content">
@@ -29,6 +32,7 @@ function App() {
         </Routes>
       </div>
     </div>
+    </>
   );
 }
 
