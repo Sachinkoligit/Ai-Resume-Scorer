@@ -22,7 +22,7 @@ export default function Login() {
       <div className="login-wrapper">
         <div className="login-card">
           <h1>Login</h1>
-          <button onClick={authUser ? logout : login}>
+          <button onClick={authUser ? logout : handleLogin}>
             <FaGoogle /> {authUser ? "Logout" : "Continue with Google"}
           </button>
         </div>
