@@ -8,22 +8,23 @@ import { auth, provider } from "../utils/firebase";
 export const useAuthStore = create((set) => ({
   authUser: null,
   login: async () => {
-    console.log("login...")
+    console.log("login...");
     try {
       const result = await signInWithPopup(auth, provider);
       const { accessToken, displayName, email, photoURL } = result.user;
       localStorage.setItem("accessToken", accessToken);
-      toast.success("Login Successfully")
+      toast.success("Login Successfully");
       set({ authUser: result.user });
-    //   navigate("/dashboard");
+      //   navigate("/dashboard");
+      return true;
     } catch (error) {
       toast.error(error.message || "Something went wrong");
     }
   },
-  logout: async() => {
+  logout: async () => {
     await signOut(auth);
     set({ authUser: null });
-    toast.success("Logout Successfully")
+    toast.success("Logout Successfully");
     localStorage.clear();
   },
 }));

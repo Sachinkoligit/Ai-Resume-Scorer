@@ -13,7 +13,7 @@ export default function Sidebar() {
     { name: "dashboard", icon: <MdDashboard />, redirect: "/dashboard" },
     { name: "history", icon: <FaHistory />, redirect: "/history" },
     { name: "admin", icon: <RiAdminLine />, redirect: "/admin" },
-    { name: "signin/signout", icon: <MdOutlineLogout />, redirect:"/signin" },
+    { name: "signin/signout", icon: <MdOutlineLogout />, redirect: "/signin" },
   ];
   const pathName = location.pathname;
 
@@ -57,5 +57,5 @@ export default function Sidebar() {
         ))}
       </ul>
     </div>
-  )
+  );
 }
