@@ -3,6 +3,6 @@ import { storeResume } from "../controllers/resume.controller.js";
 
 const router = express.Router();
 
-router.post("/resume",storeResume);
+router.post("/addResume",storeResume);
 
 export default router;
