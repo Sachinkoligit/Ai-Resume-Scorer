@@ -1,4 +1,4 @@
-import resumeModal from "../models/resume";
+import resumeModal from "../models/resume.js";
 
 export const storeResume = async(req,res) =>{
     try{
