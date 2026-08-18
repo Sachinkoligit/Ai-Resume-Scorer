@@ -2,11 +2,15 @@ import resumeModal from "../models/resume.js";
 import { PDFParse } from "pdf-parse";
 import { Cohere } from "cohere-ai";
 import upload from "../config/multer.js";
+import fs from 'fs'
 
 export const storeResume = async (req, res) => {
   try {
     const { job_desc, user } = req.body;
-    console.log("job description", job_desc);
+    const pdfBuffer = fs.readFileSync(req.file.path);
+    const parser = new PDFParse({data: pdfBuffer});
+    const result = await parser.getText();
+    console.log(result);
     res
       .status(200)
       .json({
