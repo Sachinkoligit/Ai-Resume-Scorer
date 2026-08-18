@@ -1,8 +1,12 @@
 import resumeModal from "../models/resume.js";
 import { PDFParse } from "pdf-parse";
-import { Cohere } from "cohere-ai";
+import { CohereClient } from "cohere-ai";
 import upload from "../config/multer.js";
 import fs from "fs";
+
+const cohere = new CohereClient({
+  token: process.env.CO_API_KEY,
+});
 
 export const storeResume = async (req, res) => {
   try {
@@ -10,7 +14,6 @@ export const storeResume = async (req, res) => {
     const pdfBuffer = fs.readFileSync(req.file.path);
     const parser = new PDFParse({ data: pdfBuffer });
     const result = await parser.getText();
-    console.log(result);
 
     const prompt = `
     You are a resume screening assistant. Compare the following resume text with the provided job description and give a match score (0-100) and feedback.
@@ -18,6 +21,16 @@ export const storeResume = async (req, res) => {
     Resume: ${result.text}
     Job Description: ${job_desc}
     `;
+
+    const aiResponse = await cohere.chat({
+      model: "command-a-03-2025",
+      message: prompt,
+      max_tokens: 100,
+      temperature: 0.7,
+    });
+
+    let aiResult = aiResponse.text;
+    console.log(aiResult);
 
     res.status(200).json({
       message: "Success",
