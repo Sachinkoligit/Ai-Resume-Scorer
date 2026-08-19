@@ -1,11 +1,16 @@
 import resumeModal from "../models/resume.js";
 import { PDFParse } from "pdf-parse";
 import { CohereClient } from "cohere-ai";
+import OpenAI from "openai";
 import upload from "../config/multer.js";
 import fs from "fs";
 
-const cohere = new CohereClient({
-  token: process.env.CO_API_KEY,
+// const cohere = new CohereClient({
+//   token: process.env.CO_API_KEY,
+// });
+
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
 export const storeResume = async (req, res) => {
@@ -22,14 +27,22 @@ export const storeResume = async (req, res) => {
     Job Description: ${job_desc}
     `;
 
-    const aiResponse = await cohere.chat({
-      model: "command-a-03-2025",
-      message: prompt,
-      max_tokens: 100,
-      temperature: 0.7,
+    // const aiResponse = await cohere.chat({
+    //   model: "command-a-03-2025",
+    //   message: prompt,
+    //   max_tokens: 100,
+    //   temperature: 0.7,
+    // });
+
+    const aiResponse = await openai.responses.create({
+      model: "gpt-5.6-luna",
+      input: prompt,
     });
 
-    let aiResult = aiResponse.text;
+    // let aiResult = aiResponse.text;
+    // console.log(aiResult);
+
+    let aiResult = aiResponse.output_text;
     console.log(aiResult);
 
     res.status(200).json({
