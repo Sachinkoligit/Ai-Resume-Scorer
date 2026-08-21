@@ -1,7 +1,8 @@
 import resumeModal from "../models/resume.js";
 import { PDFParse } from "pdf-parse";
-import { CohereClient } from "cohere-ai";
-import OpenAI from "openai";
+// import { CohereClient } from "cohere-ai";
+// import OpenAI from "openai";
+import { GoogleGenAI } from "@google/genai";
 import upload from "../config/multer.js";
 import fs from "fs";
 
@@ -9,8 +10,12 @@ import fs from "fs";
 //   token: process.env.CO_API_KEY,
 // });
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+// const openai = new OpenAI({
+//   apiKey: process.env.GEMINI_API_KEY,
+// });
+
+const ai = new GoogleGenAI({
+  apiKey: process.env.GEMINI_API_KEY,
 });
 
 export const storeResume = async (req, res) => {
@@ -34,16 +39,21 @@ export const storeResume = async (req, res) => {
     //   temperature: 0.7,
     // });
 
-    const aiResponse = await openai.responses.create({
-      model: "gpt-5.6-luna",
-      input: prompt,
+    // const aiResponse = await openai.responses.create({
+    //   model: "gpt-5.6-luna",
+    //   input: prompt,
+    // });
+
+    const aiResponse = await ai.models.generateContent({
+      model: "gemini-2.5-flash",
+      contents: prompt,
     });
 
-    // let aiResult = aiResponse.text;
-    // console.log(aiResult);
-
-    let aiResult = aiResponse.output_text;
+    let aiResult = aiResponse.text;
     console.log(aiResult);
+
+    // let aiResult = aiResponse.output_text;
+    // console.log(aiResult);
 
     res.status(200).json({
       message: "Success",
