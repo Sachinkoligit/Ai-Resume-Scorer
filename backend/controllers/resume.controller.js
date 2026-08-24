@@ -65,7 +65,6 @@ The score must be a number between 0 and 100.
 
     // let aiResult = aiResponse.output_text;
     // console.log(aiResult);
-    console.log(req.file)
     await resumeModal.create({
       user,
       resume_name: req.file.originalname,
