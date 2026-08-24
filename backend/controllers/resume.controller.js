@@ -61,13 +61,14 @@ The score must be a number between 0 and 100.
     let aiResult = JSON.parse(
       aiResponse.text.replace(/```json|```/g, "").trim(),
     );
-    console.log(aiResult.score, aiResult.reason);
+    // console.log(aiResult.score, aiResult.reason);
 
     // let aiResult = aiResponse.output_text;
     // console.log(aiResult);
+    console.log(req.file)
     await resumeModal.create({
       user,
-      resume_name: req.file.name,
+      resume_name: req.file.originalname,
       job_desc,
       score: aiResult.score,
       feedback: aiResult.reason,
