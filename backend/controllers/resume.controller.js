@@ -30,6 +30,10 @@ export const storeResume = async (req, res) => {
 
     Resume: ${result.text}
     Job Description: ${job_desc}
+
+    Return the score and a brief explanation in this format:
+    Score: XX
+    Reason: ...
     `;
 
     // const aiResponse = await cohere.chat({
