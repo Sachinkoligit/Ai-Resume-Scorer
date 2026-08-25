@@ -72,13 +72,30 @@ The score must be a number between 0 and 100.
       score: aiResult.score,
       feedback: aiResult.reason,
     });
-    fs.unlinkSync(req.file.path)
+    fs.unlinkSync(req.file.path);
     res.status(200).json({
       message: "Success",
       data: [{ job_desc: job_desc }, { user: user }, { resume: req.file }],
     });
   } catch (error) {
     console.log("error", error);
+    res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
+  }
+};
+
+export const getAllResumeForUser = async (req, res) => {
+  try {
+    const { user } = req.params;
+    const existingUserResume = await resumeModal.find({ user: user }).sort({
+      createdAt: -1,
+    });
+    if (existingUserResume.length === 0)
+      return res.status(404).json({ message: "No Resume Found" });
+
+    res.status(200).json({ data: existingUserResume });
+  } catch (error) {
     res
       .status(500)
       .json({ message: "Internal server error", error: error.message });
