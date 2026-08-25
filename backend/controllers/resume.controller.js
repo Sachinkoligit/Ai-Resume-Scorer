@@ -87,8 +87,10 @@ The score must be a number between 0 and 100.
 
 export const getAllResumeForUser = async (req, res) => {
   try {
-    const { user } = req.body;
-    const existingUserResume = await resumeModal.find({ user: user });
+    const { user } = req.params;
+    const existingUserResume = await resumeModal.find({ user: user }).sort({
+      createdAt: -1,
+    });
     if (existingUserResume.length === 0)
       return res.status(404).json({ message: "No Resume Found" });
 
