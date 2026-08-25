@@ -6,6 +6,6 @@ const router = express.Router();
 
 router.post("/addResume",upload.single("resume"),storeResume);
 
-router.post("/getUserResume",getAllResumeForUser);
+router.post("/getUserResume", upload.none(), getAllResumeForUser);
 
 export default router;
