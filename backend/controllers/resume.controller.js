@@ -101,3 +101,19 @@ export const getAllResumeForUser = async (req, res) => {
       .json({ message: "Internal server error", error: error.message });
   }
 };
+
+export const getAllResume = async (req, res) => {
+  try {
+    const existingUserResume = await resumeModal.find().sort({
+      createdAt: -1,
+    });
+    if (existingUserResume.length === 0)
+      return res.status(404).json({ message: "No Resume Found" });
+
+    res.status(200).json({ data: existingUserResume });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
+  }
+};
