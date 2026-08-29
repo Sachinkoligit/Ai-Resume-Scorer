@@ -8,6 +8,6 @@ router.post("/addResume",upload.single("resume"),storeResume);
 
 router.get("/getUserResume/:user", getAllResumeForUser);
 
-router.get("/getUserResume/:user",getAllResume);
+router.get("/getAllResume",getAllResume);
 
 export default router;
