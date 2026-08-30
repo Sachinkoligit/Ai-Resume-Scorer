@@ -5,9 +5,43 @@ import { FaRegFileAlt, FaUser } from "react-icons/fa";
 import { VscFilePdf } from "react-icons/vsc";
 import { GiProgression } from "react-icons/gi";
 import Result from "../ui/Result";
+import { useAuthStore } from "../../store/authStore";
 
 export default function Dashboard() {
+  const { authUser } = useAuthStore();
+  const [resumeFile,setResumeFile] = useState(null);
+  const [jobDesc,setJobDesc] = useState("");
   const [imageError, setImageError] = useState(false);
+  const [aiResponse,setAiResponse] = useState(null);
+  const handleOnChange = async(e)=>{
+    setResumeFile(e.target?.files[0])
+  }
+
+  const onAnalyzeClick = async()=>{
+    try{
+      const response = await fetch("http://localhost:5000/api/auth/addResume", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          resume: resumeFile,
+          job_desc:jobDesc,
+          user: authUser?._id,
+        }),
+      });
+
+      const data = await response.json();
+      setAiResponse(data.data)
+
+      if (!response.ok) {
+        throw new Error(data.message || "Registration failed");
+      }
+      console.log(resumeFile,jobDesc)
+    } catch(error){
+      console.log(error)
+    }
+  }
   return (
     <div className="dashboard-container">
       <div className="dashboard-wrapper">
@@ -39,15 +73,16 @@ export default function Dashboard() {
 
           <div className="upload-wrapper">
             <div className="container">
-              <h4 style={{ margin: 0 }}>Upload your resume</h4>
+              <h4 style={{ margin: 0 }}>{resumeFile ? resumeFile?.name :"Upload your resume"}</h4>
             </div>
 
-            <button className="upload-button">Upload Resume</button>
+            <label htmlFor="FileUpload" className="upload-button">Upload Resume</label>
+            <input className="resumeInput" onChange={handleOnChange} type="file" accept=".pdf" id="FileUpload" />
           </div>
 
           <div className="analyze-wrapper">
-            <textarea rows={8} placeholder="Paste Your Job Description" />
-            <button className="analyze-button">Analyze</button>
+            <textarea value={jobDesc} onChange={(e)=>setJobDesc(e.target.value)} rows={8} placeholder="Paste Your Job Description" />
+            <button onClick={onAnalyzeClick} className="analyze-button">Analyze</button>
           </div>
         </div>
 
@@ -58,7 +93,7 @@ export default function Dashboard() {
               {!imageError ? (
                 <img
                   alt="profile"
-                  src="xyz.png"
+                  src={authUser?.photourl}
                   onError={() => setImageError(true)}
                   className="profile"
                 />
@@ -66,7 +101,7 @@ export default function Dashboard() {
                 <FaUser className="profile" />
               )}
             </div>
-            <h4>Sachin koli</h4>
+            <h4>{authUser?.name}</h4>
           </div>
 
           {/* <div className="profile-container">
@@ -75,8 +110,9 @@ export default function Dashboard() {
           <h5>Feedback</h5>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste architecto quo aperiam ad porro recusandae, enim veniam debitis, perferendis omnis velit dolores consequuntur temporibus maxime deserunt, reiciendis ullam nihil dicta laboriosam sint. Maxime explicabo quis nisi eaque, aperiam velit magnam perferendis asperiores iste beatae reiciendis quaerat corrupti autem, necessitatibus molestias? eaque, aperiam velit magnam perferendis asperiores iste beatae reiciendis quaerat corrupti autem, necessitatibus molestias?</p>
         </div> */}
-        <div className="result-section">
-          <Result /></div>
+          <div className="result-section">
+            <Result score={aiResponse.score} feedback={aiResponse.feedback} />
+          </div>
         </div>
       </div>
     </div>

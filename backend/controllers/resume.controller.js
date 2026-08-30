@@ -65,7 +65,7 @@ The score must be a number between 0 and 100.
 
     // let aiResult = aiResponse.output_text;
     // console.log(aiResult);
-    await resumeModal.create({
+    const finalResult = await resumeModal.create({
       user,
       resume_name: req.file.originalname,
       job_desc,
@@ -75,7 +75,7 @@ The score must be a number between 0 and 100.
     fs.unlinkSync(req.file.path);
     res.status(200).json({
       message: "Success",
-      data: [{ job_desc: job_desc }, { user: user }, { resume: req.file }],
+      data: finalResult,
     });
   } catch (error) {
     console.log("error", error);
