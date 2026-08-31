@@ -16,7 +16,6 @@ export default function Dashboard() {
   const handleOnChange = async (e) => {
     setResumeFile(e.target?.files[0]);
   };
-
   const onAnalyzeClick = async () => {
     try {
       const formData = new FormData();
@@ -105,7 +104,7 @@ export default function Dashboard() {
           <div className="profile-container">
             <h3>Analyze with AI</h3>
             <div className="profile-image-container">
-              {!imageError ? (
+              {!imageError && authUser?.photourl ? (
                 <img
                   alt="profile"
                   src={authUser?.photourl}
