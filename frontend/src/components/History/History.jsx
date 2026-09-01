@@ -8,23 +8,28 @@ import { useAuthStore } from "../../store/authStore";
 export default function History() {
   const { authUser } = useAuthStore();
   const [resumes, setResumes] = useState([]);
+
   const getUserHistory = async () => {
-    console.log("authUser",authUser?._id);
+    if (!authUser?._id) {
+      setResumes([]);
+      return;
+    }
+
     try {
       const response = await fetch(
         `http://localhost:5000/api/auth/getUserResume/${authUser._id}`,
       );
       const result = await response.json();
-      console.log("result",result);
-      setResumes(result.data);
+      setResumes(result.data || []);
     } catch (error) {
       console.log(error || error.message);
+      setResumes([]);
     }
   };
 
   useEffect(() => {
     getUserHistory();
-  }, []);
+  }, [authUser?._id]);
   return (
     <div className="history-container">
       <div className="history-wrapper">
