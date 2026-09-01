@@ -3,6 +3,7 @@ import "../Dashboard/Dashboard.css";
 import { GiProgression } from "react-icons/gi";
 
 export default function Result({score,feedback,issueDate}) {
+  const date = new Date(issueDate).toLocaleDateString();
   const pathname = window.location.pathname;
   const isHistoryPage = pathname.includes("history");
   return (
@@ -20,7 +21,7 @@ export default function Result({score,feedback,issueDate}) {
         {feedback || NA}
       </p>
       {isHistoryPage && (
-        <span style={{ alignSelf: "flex-start" }}>Dated: {issueDate}</span>
+        <span style={{ alignSelf: "flex-start" }}>Dated: {date}</span>
       )}
     </div>
   );
