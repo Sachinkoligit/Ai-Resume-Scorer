@@ -9,11 +9,13 @@ export default function History() {
   const { authUser } = useAuthStore();
   const [resumes, setResumes] = useState([]);
   const getUserHistory = async () => {
+    console.log("authUser",authUser?._id);
     try {
       const response = await fetch(
         `http://localhost:5000/api/auth/getUserResume/${authUser._id}`,
       );
       const result = await response.json();
+      console.log("result",result);
       setResumes(result.data);
     } catch (error) {
       console.log(error || error.message);
@@ -30,8 +32,8 @@ export default function History() {
         <Result />
         <Result />
         <Result /> */}
-        {resumes.map((item)=>(
-          <Result score={item.score} feedback={item.feedback} />
+        {resumes.map((item,index)=>(
+          <Result key={index} score={item.score} feedback={item.feedback} issueDate={item.createdAt}/>
         ))}
       </div>
     </div>

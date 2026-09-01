@@ -2,7 +2,7 @@ import React from "react";
 import "../Dashboard/Dashboard.css";
 import { GiProgression } from "react-icons/gi";
 
-export default function Result({score,feedback}) {
+export default function Result({score,feedback,issueDate}) {
   const pathname = window.location.pathname;
   const isHistoryPage = pathname.includes("history");
   return (
@@ -20,7 +20,7 @@ export default function Result({score,feedback}) {
         {feedback || NA}
       </p>
       {isHistoryPage && (
-        <span style={{ alignSelf: "flex-start" }}>Dated: 02-07-2026</span>
+        <span style={{ alignSelf: "flex-start" }}>Dated: {issueDate}</span>
       )}
     </div>
   );
