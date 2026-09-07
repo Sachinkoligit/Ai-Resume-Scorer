@@ -43,8 +43,8 @@ export default function Admin() {
         {resumes.map((item, index) => (
           <AdminResults
             key={index}
-            name={authUser.name}
-            email={authUser.email}
+            name={item?.user?.name}
+            email={item?.user?.email}
             score={item.score}
             feedback={item.feedback}
             issueDate={item.createdAt}
