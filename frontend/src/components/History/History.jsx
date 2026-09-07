@@ -30,6 +30,15 @@ export default function History() {
   useEffect(() => {
     getUserHistory();
   }, [authUser?._id]);
+
+  if (resumes.length < 1) {
+    return (
+      <div className="history-container">
+          <h2>No History Found</h2>
+        </div>
+    );
+  }
+
   return (
     <div className="history-container">
       <div className="history-wrapper">
@@ -37,8 +46,13 @@ export default function History() {
         <Result />
         <Result />
         <Result /> */}
-        {resumes.map((item,index)=>(
-          <Result key={index} score={item.score} feedback={item.feedback} issueDate={item.createdAt}/>
+        {resumes.map((item, index) => (
+          <Result
+            key={index}
+            score={item.score}
+            feedback={item.feedback}
+            issueDate={item.createdAt}
+          />
         ))}
       </div>
     </div>
