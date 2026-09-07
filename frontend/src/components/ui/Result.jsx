@@ -1,11 +1,13 @@
 import React from "react";
 import "../Dashboard/Dashboard.css";
 import { GiProgression } from "react-icons/gi";
+import { useAuthStore } from "../../store/authStore";
 
 export default function Result({score,feedback,issueDate}) {
   const date = new Date(issueDate).toLocaleDateString();
   const pathname = window.location.pathname;
   const isHistoryPage = pathname.includes("history");
+  const {authUser} = useAuthStore();
   return (
     <div className="profile-container">
       {!isHistoryPage && <h3>Result</h3>}
@@ -16,7 +18,7 @@ export default function Result({score,feedback,issueDate}) {
       {isHistoryPage && (
         <h5 style={{ color: "blue" }}>Full Stack Mern Developer</h5>
       )}
-      {isHistoryPage && <h5>Resume Name: Sachin Koli</h5>}
+      {isHistoryPage && <h5>Resume Name: {authUser.name}</h5>}
       <p>
         {feedback || NA}
       </p>
