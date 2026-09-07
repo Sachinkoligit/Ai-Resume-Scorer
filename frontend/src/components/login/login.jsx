@@ -10,7 +10,7 @@ import { useAuthStore } from "../../store/authStore";
 export default function Login() {
   const navigate = useNavigate();
   const { authUser, login, logout } = useAuthStore();
-  console.log("auth user", authUser)
+  // console.log("auth user", authUser)
   const handleLogin = async () => {
     const success = await login();
     if (success) {
