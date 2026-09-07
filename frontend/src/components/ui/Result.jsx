@@ -15,9 +15,6 @@ export default function Result({score,feedback,issueDate}) {
         {score || 0}% <GiProgression color="orange" />
       </h2>
       {!isHistoryPage && <h5>Feedback</h5>}
-      {isHistoryPage && (
-        <h5 style={{ color: "blue" }}>Full Stack Mern Developer</h5>
-      )}
       {isHistoryPage && <h5>Resume Name: {authUser.name}</h5>}
       <p>
         {feedback || NA}
